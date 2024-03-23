@@ -1,2 +1,3 @@
-# osu-replay-player
- 🤖 osu!stable replay player
+# 🤖 osu!stable replay player entirely made in python
+# 📝 How to use 
+
