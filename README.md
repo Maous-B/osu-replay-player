@@ -3,7 +3,6 @@
 
 
 - Turn off raw-input
-\
 - Set keyboard binding to W and X
 \
 **![image](https://github.com/Maous-B/osu-replay-player/assets/79797065/59608662-e8ae-4c1a-9055-28d721a9fc79)**
