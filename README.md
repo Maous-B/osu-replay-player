@@ -1,5 +1,5 @@
 # 🤖 osu!stable replay player entirely made in python
-# ✅ As of the 23 march 2024, the script is undetected since osu!anticheat doesn't even check process (kernel objects) handles
+# ✅ As of the 23 march 2024, the script is undetected since osu! anticheat doesn't even check process (kernel objects) handles
 # 📄 Interface 
 ![image](https://github.com/Maous-B/osu-replay-player/assets/79797065/9d46e027-0820-440e-af78-4ff398b7631d)
 
