@@ -2,7 +2,7 @@
 # 📝 How to use 
 
 
-- Turn off raw-input\
+- Turn off raw-input
 \
 - Set keyboard binding to W and X
 \
