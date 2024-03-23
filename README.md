@@ -1,6 +1,6 @@
 # 🤖 osu!stable replay player entirely made in python
 
-# Interface
+# 📄 Interface 
 ![image](https://github.com/Maous-B/osu-replay-player/assets/79797065/9d46e027-0820-440e-af78-4ff398b7631d)
 
 # 📝 How to use 
