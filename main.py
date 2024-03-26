@@ -32,7 +32,7 @@ file_path = None
 
 
 # osu! signatures (https://github.com/l3lackShark/gosumemory/blob/master/memory/read.go)
-timeSignature = rb"\x5E\x5F\x5D\xC3\xA1....\x89.\x04"
+timeSignature = rb"\x5E\x5F\x5D\xC3\xA1....\x89.\x04" # #=zwNZwz4Uky9t6HtMDUQ==::#=zbjYA_Y$G7dEp
 statusSignature = rb"\x48\x83\xF8\x04\x73\x1E"
 timeAddr = None
 statusAddr = None
@@ -64,6 +64,7 @@ timeAddr = pymem.memory.read_int(pHandle, timePattern + 0x5)
 statusPattern = pymem.pattern.pattern_scan_all(pHandle, statusSignature, return_multiple=False)
 statusAddr = pymem.memory.read_uint(pHandle, statusPattern - 0x4)
 
+# Printing the banner
 def bannerprint(m_m, k_p, f, f_p):
     banner = (f"""
 Replay bot
@@ -80,10 +81,11 @@ Replay loaded : {f_p}
 
 def main():
 
+    # Initializing global variables
     global c, sx, sy, rp, started, mouse_movements, key_presses, LOADED, flip, file_path, processFound, coords, replayPath, oneTimeK1, oneTimeK2
     
     
-    # Scaling 
+    # Scaling to real coords
     c = (4 / 3) / (user32.GetSystemMetrics(0) / user32.GetSystemMetrics(1))
     sx = user32.GetSystemMetrics(0) / 2 - (0.8 * user32.GetSystemMetrics(0) * c) / 2
     sy = 0.2 * user32.GetSystemMetrics(1) * (11 / 19)
@@ -102,8 +104,12 @@ def main():
                 try:
                     # Search for a replay
                     replayPath = askopenfilename(filetypes=[(".osr files", "*.osr")])
+                    # Some string manipulation here
                     replayPath = replayPath.replace("/", "\\")
+
+                    # Get the replay
                     replay = slider.Replay.from_path(replayPath, retrieve_beatmap=False)
+                    # Save the replay actions
                     rp = replay.actions
                     os.system("cls")
                     bannerprint(mouse_movements, key_presses, flip, replayPath)
@@ -139,13 +145,14 @@ def main():
                 time.sleep(0.15)
             
 
-            #start playing
+            #start playing anc check if the status is Playing
             elif keyboard.is_pressed("enter") and curr_status == 2:
                 ind = 1
 
                 while len(rp) - 2 > ind and not keyboard.is_pressed("esc") and LOADED:
                     curr_time = pymem.memory.read_int(pHandle, timeAddr)
 
+                    # Weird parsing because the 
                     if curr_time <= int((rp[ind].offset.seconds + rp[ind].offset.microseconds/1000000)*1000) and not started:
                         if not int((rp[ind].offset.seconds + rp[ind].offset.microseconds/1000000)*1000) >= 86300000:
                             started = True
@@ -156,6 +163,8 @@ def main():
                             # Convert the coordinates 
                             xCoords = int((sx + rp[ind].position.x * user32.GetSystemMetrics(0) * 0.8 * c / 512))
                             yCoords = int((sy + rp[ind].position.y * user32.GetSystemMetrics(1) * 0.8 / 384))
+
+                            # Convert the Y coords to be flipped (HR mode)
                             yFlippedCoords = int((sy + (384 - rp[ind].position.y) * user32.GetSystemMetrics(1) * 0.8 / 384))
 
 
@@ -169,7 +178,9 @@ def main():
                                     interception.move_to(xCoords,  yCoords)
                             
                             if key_presses:
+                                #oneTimeK1 / oneTimeK2 are used to avoid spamming the key presses
                                 if rp[ind].key1 == True:
+                                        
                                     if oneTimeK1:
                                         interception.key_down("w")
                                         oneTimeK1 = False
@@ -192,7 +203,7 @@ def main():
                                 
                             ind += 1
 
-                # Reset the variables
+                # Reset the variables /  keys
                 interception.key_up("w")
                 interception.key_up("x")
                 ind = 1
