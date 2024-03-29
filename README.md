@@ -7,6 +7,12 @@ You need to install the [interception driver](https://github.com/oblitum/Interce
 
 # 📝 How to use 
 
+- Press L to load a replay
+- Press M to enable mouse movements
+- Press K to enable keyboard presses
+- Press F4 to leave
+- Press ENTER to start the replay bot while playing a map
+
 - Use 1920x1080 resolution and full-screen mode
 - Turn off raw-input
 - Set keyboard binding to W and X
