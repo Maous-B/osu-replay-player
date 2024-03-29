@@ -11,8 +11,7 @@ You need to install the [interception driver](https://github.com/oblitum/Interce
 - Press M to enable mouse movements
 - Press K to enable keyboard presses
 - Press F4 to leave
-- Press ENTER to start the replay bot while playing a map
-
+-When playing a beatmap, just press the ENTER key and it'll play. Press the ESC key to completly stop it (and you have to restart the map if you want to play it again)
 - Use 1920x1080 resolution and full-screen mode
 - Turn off raw-input
 - Set keyboard binding to W and X
@@ -20,4 +19,3 @@ You need to install the [interception driver](https://github.com/oblitum/Interce
 ![image](https://github.com/Maous-B/osu-replay-player/assets/79797065/59608662-e8ae-4c1a-9055-28d721a9fc79)
 \
 ![image](https://github.com/Maous-B/osu-replay-player/assets/79797065/da2f52fb-1304-4769-beb8-7c2afaf61ec9)
-- When playing a beatmap, just press the ENTER key and it'll play. Press the ESC key to completly stop it (and you have to restart the map if you want to play it again)
