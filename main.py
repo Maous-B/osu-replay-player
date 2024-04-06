@@ -13,9 +13,10 @@ import sys
 import interception
 from tkinter.filedialog import askopenfilename
 
+# Putting a title to the console 😃
 os.system("title Clarity Overlay")
 
-#Initializing variables
+#Initializing variables 
 user32 = ctypes.windll.user32
 processFound = False
 started = False
@@ -32,8 +33,9 @@ file_path = None
 
 
 # osu! signatures (https://github.com/l3lackShark/gosumemory/blob/master/memory/read.go)
-timeSignature = rb"\x5E\x5F\x5D\xC3\xA1....\x89.\x04" # #=zwNZwz4Uky9t6HtMDUQ==::#=zbjYA_Y$G7dEp
-statusSignature = rb"\x48\x83\xF8\x04\x73\x1E"
+timeSignature = rb"\x5E\x5F\x5D\xC3\xA1....\x89.\x04" # #=zwNZwz4Uky9t6HtMDUQ==::#=zbjYA_Y$G7dEp (cheat engine show this in memory / EAZFuscator symbol) 
+statusSignature = rb"\x48\x83\xF8\x04\x73\x1E" # #=zwSBG09YxaOy$av669g==::#=zu9bxTCTCw6g9fmrx8A== (you can use directly EAZ Fuscator symbols for pattern scanning tho)
+
 timeAddr = None
 statusAddr = None
 replayPath = None
@@ -60,9 +62,9 @@ while processFound != True:
 
 # Resolving addresses 
 timePattern = pymem.pattern.pattern_scan_all(pHandle, timeSignature, return_multiple=False)
-timeAddr = pymem.memory.read_int(pHandle, timePattern + 0x5)
+timeAddr = pymem.memory.read_int(pHandle, timePattern + 0x5) # Add an offset of 5 to the timePattern address
 statusPattern = pymem.pattern.pattern_scan_all(pHandle, statusSignature, return_multiple=False)
-statusAddr = pymem.memory.read_uint(pHandle, statusPattern - 0x4)
+statusAddr = pymem.memory.read_uint(pHandle, statusPattern - 0x4) # 
 
 # Printing the banner
 def bannerprint(m_m, k_p, f, f_p):
@@ -109,11 +111,12 @@ def main():
 
                     # Get the replay
                     replay = slider.Replay.from_path(replayPath, retrieve_beatmap=False)
-                    # Save the replay actions
+                    # Save the replay actions (x, y coords, time (in seconds))
                     rp = replay.actions
                     os.system("cls")
                     bannerprint(mouse_movements, key_presses, flip, replayPath)
                     time.sleep(0.15)
+                # If the replay isn't found then the program still continue to execute
                 except FileNotFoundError:
                     print("[*] Replay not found, please retry.") 
                     time.sleep(3)
@@ -152,7 +155,7 @@ def main():
                 while len(rp) - 2 > ind and not keyboard.is_pressed("esc") and LOADED:
                     curr_time = pymem.memory.read_int(pHandle, timeAddr)
 
-                    # Weird parsing because the 
+                    # Weird parsing because of the library starting at 86300000 ms for some reason
                     if curr_time <= int((rp[ind].offset.seconds + rp[ind].offset.microseconds/1000000)*1000) and not started:
                         if not int((rp[ind].offset.seconds + rp[ind].offset.microseconds/1000000)*1000) >= 86300000:
                             started = True
@@ -174,11 +177,11 @@ def main():
                                 if flip:
                                     interception.move_to(xCoords,  yFlippedCoords)
                                 else:
-                                    
+                                    # Move the cursor as a NM play (normal play)
                                     interception.move_to(xCoords,  yCoords)
                             
                             if key_presses:
-                                #oneTimeK1 / oneTimeK2 are used to avoid spamming the key presses
+                                #oneTimeK1 / oneTimeK2 are used to avoid spamming the key presses through the driver
                                 if rp[ind].key1 == True:
                                         
                                     if oneTimeK1:
@@ -203,12 +206,13 @@ def main():
                                 
                             ind += 1
 
-                # Reset the variables /  keys
+                # Reset the variables / keys
                 interception.key_up("w")
                 interception.key_up("x")
+                # Reset the index
                 ind = 1
                 started = False
-
+        #If the reading process doesn't work, then safely exit
         except pymem.exception.MemoryReadError:
             os.system("cls")
             print("\33[38;5;196m[*] ERROR : Couldn't read memory. Please verify that osu! is correctly opened. Leaving in 3 seconds.")
