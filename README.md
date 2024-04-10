@@ -1,3 +1,4 @@
+<p align="center">
 
 # 🤖 osu!stable replay player entirely made in python
 # 🔧 Requirements
@@ -21,3 +22,4 @@ You need to install the [interception driver](https://github.com/oblitum/Interce
 \
 ![image](https://github.com/Maous-B/osu-replay-player/assets/79797065/da2f52fb-1304-4769-beb8-7c2afaf61ec9)
 
+</p>
