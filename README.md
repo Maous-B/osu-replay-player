@@ -1,6 +1,7 @@
 <div align="center">
 
-# 🤖 osu!stable replay player entirely made in python
+# 🤖 osu!stable replay bot
+(old) replay bot made by me months ago 
 # 🔧 Requirements
 You need to install the [interception driver](https://github.com/oblitum/Interception/releases/download/v1.0.1/Interception.zip) and restart your system
 
