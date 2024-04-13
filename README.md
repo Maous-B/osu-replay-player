@@ -12,7 +12,7 @@ You need to install the [interception driver](https://github.com/oblitum/Interce
 # 📝 How to use 
 
 - Press L to load a replay, Press F4 to leave
-- Press M to enable/disable mouse movements, K for keyboard presses 
+- Press M to enable mouse movements, K for keyboard presses and H to flip (HR)
 - Press ENTER to play while playing. Press the ESC key to stop it 
 - Use 1920x1080 resolution and full-screen mode
 - Turn off raw-input (in settings)
