@@ -13,7 +13,7 @@ You need to install the [interception driver](https://github.com/oblitum/Interce
 
 - Press L to load a replay, Press F4 to leave
 - Press M to enable/disable mouse movements, K for keyboard presses 
-- When playing a beatmap, press the ENTER key to play. Press the ESC key to stop it 
+- Press ENTER to play while playing. Press the ESC key to stop it 
 - Use 1920x1080 resolution and full-screen mode
 - Turn off raw-input (in settings)
 - Set keyboard binding to W and X (in settings)
